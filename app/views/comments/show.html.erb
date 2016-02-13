@@ -1,0 +1,9 @@
+<% title "Comment for "+ @recipe.title %>
+
+<%= render @comment %>
+
+<%= link_to "Edit", edit_recipe_comment_path(@recipe,@comment), class: "btn btn-primary" %>
+<%= link_to "Delete", recipe_comment_path(@recipe,@comment), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %>
+<br>
+
+<%= link_to "Back", recipe_path(@recipe) %>

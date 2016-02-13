@@ -1,0 +1,4 @@
+<%= div_for comment do %>
+	 <h3><%= link_to_unless_current comment.title, recipe_comment_path(@recipe,comment) %></h3>
+	<p><%= comment.content %></p>
+<% end%>

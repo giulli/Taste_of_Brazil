@@ -1,0 +1,14 @@
+<% title 'Sign Up' %>
+<br><br>
+<%= bootstrap_form_for @user do |f| %>
+	<%= f.alert_message "Please fix the errors below."%>
+	<%= f.text_field :name %>
+	<%= f.email_field :email %>
+	<%= f.password_field :password %>
+	<%= f.password_field :password_confirmation, label: "Confirm Password" %>
+	<%= f.primary "Sign Up" %>
+<% end %>
+
+<h2>or</h2>
+
+<%= link_to 'Sign Up with Github', '/auth/github' %>

@@ -1,0 +1,7 @@
+<%= bootstrap_form_for @recipe, remote: true do |f| %>
+	<%= f.alert_message "Please fix the errors below." %>
+	<%= f.text_field :title %>
+	<%= f.text_area :ingredients, size: "30x7" %>
+	<%= f.text_area :directions, size: "30x10" %>
+	<%= f.primary %>
+<% end %>

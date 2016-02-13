@@ -1,0 +1,16 @@
+<% title @recipe.title %>
+
+<%= render @recipe %>
+
+<%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-primary"%>
+<%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %><br>
+
+<h2>Comments</h2>
+
+<%= render @recipe.comments %>
+
+
+<%= render 'comments/form'%>
+
+
+<%= link_to "All Recipes", recipes_path %>

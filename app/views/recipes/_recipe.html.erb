@@ -1,0 +1,5 @@
+<%= div_for recipe do %>
+	<p><strong>Title:</strong> <%= link_to_unless_current recipe.title, recipe %></p>
+	<p><strong>Ingredients:</strong> <%= recipe.ingredients %></p>
+	<p><strong>Directions:</strong> <%= recipe.directions %></p>
+<% end %>
