@@ -49,14 +49,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-<!--                 <%= link_to "Taste of Brazil", class: "navbar-brand page-scroll"%>
- -->                <a class="navbar-brand page-scroll" href="#page-top">Taste of Brazil</a>
+                <%= link_to "Taste of Brazil", root_path, class: "navbar-brand page-scroll"%>
+                <!-- <a class="navbar-brand page-scroll" href="#page-top">Taste of Brazil</a> -->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
+                    <% if current_user %>
+                        <%= nav_link current_user.name, user_path(current_user) %>
+                    <% end %>
+                    <%= nav_link "Home", root_path %>
+                    <%= nav_link "Recipes", recipes_path %>
+                    <%= nav_link "About", about_path %>
+                    <% if current_user %>
+                        <%= nav_link "Logout", logout_path %>
+                    <% else %>
+                        <%= nav_link "Login", login_path %>
+                        <%= nav_link "Sign Up", sign_up_path %>
+                    <% end%>
+                   <!-- <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li>
@@ -71,32 +83,49 @@
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-    <!-- Header -->
-    <header>
+<% if current_page?('/') %>
+    <div class="header">
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in">Welcome To The Cookbook!</div>
                 <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#services" class="page-scroll btn btn-xl">Go to Recipes</a>
+                <%= link_to "Go to Recipes", recipes_path, class: "page-scroll btn btn-xl"%>
             </div>
         </div>
-    </header>
-    <div class="container-fluid">
+    </div>
+<% else %>
+        <div class="container-fluid">
+            <br/>
+            <br/>
+        <div id="flash-messages" class="row">
+            <% flash.each do |name, msg| %>
+                <div class="alert alert-<%= name == "notice" ? 'success' : 'danger' %> alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <%= msg %>
+                </div>
+            <% end %>
+        </div>
+            <br/>
+            <br/>
+            <br/>
+            <% if show_title? %>
+                <h5><%= yield(:title) %></h5>
+            <% end %>
+
         <div class="row">
             <div class="col-sm-12">
                 <%= yield %>
             </div>
         </div>
     </div>
-
+<% end %>
     <!-- Services Section -->
     <!-- <section id="services">
         <div class="container">
